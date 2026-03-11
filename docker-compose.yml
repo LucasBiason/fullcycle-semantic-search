@@ -1,0 +1,94 @@
+services:
+  # ---------------------------------------------------------------------------
+  # Database
+  # ---------------------------------------------------------------------------
+
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: semantic_search_postgres
+    env_file: configs/postgres.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rag"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  pgvector-setup:
+    image: pgvector/pgvector:pg17
+    container_name: semantic_search_pgvector_setup
+    env_file: configs/postgres.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      PGPASSWORD=$$POSTGRES_PASSWORD psql -h postgres -U $$POSTGRES_USER -d $$POSTGRES_DB
+      -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS vector;"
+    restart: "no"
+
+  # ---------------------------------------------------------------------------
+  # Backend
+  # ---------------------------------------------------------------------------
+
+  backend-test:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      target: test
+    container_name: semantic_search_backend_test
+    working_dir: /app
+    env_file: configs/backend.env
+    environment:
+      - DATABASE_URL=postgresql+psycopg://postgres:postgres@postgres:5432/rag
+      - PYTHONPATH=/app/backend
+    volumes:
+      - .:/app
+    command: ["pytest", "backend/tests/", "-v"]
+    profiles:
+      - test
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      target: runner
+    container_name: semantic_search_backend
+    entrypoint: ["/entrypoint.sh"]
+    command: ["prod"]
+    env_file: configs/backend.env
+    environment:
+      - DATABASE_URL=postgresql+psycopg://postgres:postgres@postgres:5432/rag
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      pgvector-setup:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Frontend
+  # ---------------------------------------------------------------------------
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      target: runner
+    container_name: semantic_search_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

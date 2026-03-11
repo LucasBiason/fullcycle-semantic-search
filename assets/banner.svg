@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="900" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="300" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="nodes" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="200" rx="12" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="899" height="199" rx="11.5" stroke="#334155" stroke-opacity="0.5"/>
+  <!-- Logo -->
+  <g transform="translate(80, 55)">
+    <circle cx="38" cy="38" r="28" stroke="url(#accent)" stroke-width="3"/>
+    <line x1="58" y1="58" x2="78" y2="78" stroke="url(#accent)" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="28" y1="32" x2="44" y2="28" stroke="url(#nodes)" stroke-width="1.5" stroke-opacity="0.5"/>
+    <line x1="44" y1="28" x2="48" y2="44" stroke="url(#nodes)" stroke-width="1.5" stroke-opacity="0.5"/>
+    <line x1="48" y1="44" x2="32" y2="46" stroke="url(#nodes)" stroke-width="1.5" stroke-opacity="0.5"/>
+    <line x1="32" y1="46" x2="28" y2="32" stroke="url(#nodes)" stroke-width="1.5" stroke-opacity="0.5"/>
+    <line x1="28" y1="32" x2="48" y2="44" stroke="url(#nodes)" stroke-width="1" stroke-opacity="0.3"/>
+    <line x1="44" y1="28" x2="32" y2="46" stroke="url(#nodes)" stroke-width="1" stroke-opacity="0.3"/>
+    <circle cx="28" cy="32" r="3.5" fill="url(#nodes)"/>
+    <circle cx="44" cy="28" r="3.5" fill="url(#nodes)"/>
+    <circle cx="48" cy="44" r="3.5" fill="url(#nodes)"/>
+    <circle cx="32" cy="46" r="3.5" fill="url(#nodes)"/>
+  </g>
+  <!-- Title -->
+  <text x="190" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="url(#accent)">Semantic Search</text>
+  <!-- Subtitle -->
+  <text x="190" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#94a3b8">RAG Pipeline over PDF Documents</text>
+  <!-- Tech badges -->
+  <text x="190" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b">FastAPI  |  React + Tailwind  |  LangChain  |  pgVector  |  Gemini / OpenAI  |  Docker</text>
+  <!-- Decorative dots -->
+  <circle cx="780" cy="40" r="2" fill="#3b82f6" opacity="0.3"/>
+  <circle cx="810" cy="55" r="1.5" fill="#8b5cf6" opacity="0.25"/>
+  <circle cx="830" cy="35" r="2.5" fill="#60a5fa" opacity="0.2"/>
+  <circle cx="760" cy="60" r="1.5" fill="#a78bfa" opacity="0.2"/>
+  <circle cx="850" cy="50" r="1" fill="#93c5fd" opacity="0.3"/>
+  <circle cx="770" cy="150" r="2" fill="#3b82f6" opacity="0.2"/>
+  <circle cx="820" cy="140" r="1.5" fill="#8b5cf6" opacity="0.15"/>
+  <circle cx="840" cy="160" r="2" fill="#60a5fa" opacity="0.2"/>
+</svg>

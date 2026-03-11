@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+.ruff_cache/
+.coverage
+htmlcov/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+build/
+*.egg
+.pytest_cache/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+configs/*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PostgreSQL
+postgres_data/
+
+# Node / Frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo

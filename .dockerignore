@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Env: injected via env_file in compose; do not copy into image
+.env
+.env.*
+!.env.example
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Local data
+postgres_data/
+
+# Configs (injected via env_file, not baked into image)
+configs/*.env
